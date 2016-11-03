@@ -29,13 +29,21 @@ def chech_user_input(n):
         print("Excellent")
 
 
-#def user_input():
-#    get_user_input = input('Pick a letter or a word')
-#    if float('')
-#    if len(get_user_input) >= 2:
-#        user_word = get_user_input
-
-
+def user_input():
+    '''get user input and convert to upper'''
+    global user_letter
+    global user_word
+    get_user_input = input('Pick a letter or a word ')
+    #if get_user_input.isdigit:
+        #user_input()
+    if len(get_user_input) >= 2:
+        user_word = get_user_input
+        user_word = user_word.upper()
+        return user_word
+    elif len(get_user_input) == 1:
+        user_letter = get_user_input
+        user_letter = user_letter.upper()
+        return user_letter
 
 
 def main():
