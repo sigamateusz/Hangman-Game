@@ -12,4 +12,6 @@ print(random_capitol)
 
 list(random_capitol)
 
-print(random_capitol)
+print(list(random_capitol))
+
+random_capitol_dashes = list(random_capitol)
