@@ -20,7 +20,14 @@ random_capitol_dashes = list(random_capitol)
 
 
 def user_input():
-    get_user_input = input('Pick a letter or a word')
-    if float('')
+    global user_letter
+    global user_word
+    get_user_input = input('Pick a letter or a word ')
+    #if get_user_input.isdigit:
+        #user_input()
     if len(get_user_input) >= 2:
         user_word = get_user_input
+        return user_word
+    elif len(get_user_input) == 1:
+        user_letter = get_user_input
+        return user_letter
