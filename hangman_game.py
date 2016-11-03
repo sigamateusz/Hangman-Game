@@ -41,6 +41,8 @@ def user_input():
     get_user_input = input('Pick a letter or a word ')
     if get_user_input.isdigit():
         user_input()
+    elif get_user_input.isalnum() == False:
+        user_input()
     elif len(get_user_input) < 1:
         user_input()
     elif len(get_user_input) >= 2:
