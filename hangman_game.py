@@ -21,12 +21,15 @@ def create_dashes_capitol():
 
 
 def chech_user_input(n):
+    """Check occurrence n in random_capitol"""
     count = random_capitol.count(n)
     if count == 0:
         print("You looseee..")
     else:
         for i in range(1,count+1):
+            # looking for index of n in random_capitol
             random_capitol_dashes[random_capitol.index(n)] = n
+            # set n in random_capitol to 0
             random_capitol[random_capitol.index(n)] = 0
 
 
