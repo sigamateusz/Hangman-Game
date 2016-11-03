@@ -55,7 +55,6 @@ def user_input():
         return #user_letter
 
 def life(arg):
-    global life
     arg -= 1
     life = arg
 
