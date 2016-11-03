@@ -4,8 +4,7 @@ os.system('clear') # clear screen
 
 capitols = ["Berlin","Bratislava","Budapest","Dublin","London","Paris",
 "Amsterdam","Oslo","Warsaw","Cracow"]
-#random_capitol = 0
-
+n=0
 
 def create_dashes_capitol():
     global random_capitol
@@ -35,6 +34,7 @@ def chech_user_input(n):
 
 def user_input():
     '''get user input and convert to upper'''
+    global n
     global user_letter
     global user_word
     get_user_input = input('Pick a letter or a word ')
@@ -43,17 +43,19 @@ def user_input():
     elif len(get_user_input) >= 2:
         user_word = get_user_input
         user_word = user_word.upper()
-        return user_word
+        n = user_word
+        return #user_word
     elif len(get_user_input) == 1:
         user_letter = get_user_input
         user_letter = user_letter.upper()
-        return user_letter
+        n = user_letter
+        return #user_letter
 
 
 def main():
     create_dashes_capitol()
     user_input()
-    chech_user_input('A')
+    chech_user_input(n)
     print(random_capitol_dashes)
 if __name__ == '__main__':
     main()
