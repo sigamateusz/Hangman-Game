@@ -2,7 +2,7 @@ import random
 import os
 os.system('clear') # clear screen
 
-capitols = ["Bratislava","Budapest","Dublin","London","Paris",
+capitols = ["Berlin","Bratislava","Budapest","Dublin","London","Paris",
 "Amsterdam","Oslo","Warsaw","Cracow"]
 print(capitols)
 
