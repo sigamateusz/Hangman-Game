@@ -4,7 +4,8 @@ os.system('clear') # clear screen
 
 capitols = ["Berlin","Bratislava","Budapest","Dublin","London","Paris",
 "Amsterdam","Oslo","Warsaw","Cracow"]
-n=0
+n = 0
+life = 5
 
 def create_dashes_capitol():
     global random_capitol
@@ -40,6 +41,8 @@ def user_input():
     get_user_input = input('Pick a letter or a word ')
     if get_user_input.isdigit():
         user_input()
+    elif len(get_user_input) < 1:
+        user_input()
     elif len(get_user_input) >= 2:
         user_word = get_user_input
         user_word = user_word.upper()
@@ -51,6 +54,10 @@ def user_input():
         n = user_letter
         return #user_letter
 
+def life(arg):
+    global life
+    arg -= 1
+    life = arg
 
 def main():
     create_dashes_capitol()
