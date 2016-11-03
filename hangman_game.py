@@ -15,6 +15,7 @@ def create_dashes_capitol():
     print(random_capitol_dashes)
 
 def user_input():
+    '''get user input and convert to upper'''
     global user_letter
     global user_word
     get_user_input = input('Pick a letter or a word ')
