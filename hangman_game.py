@@ -17,3 +17,10 @@ list(random_capitol)
 print(list(random_capitol))
 
 random_capitol_dashes = list(random_capitol)
+
+
+def user_input():
+    get_user_input = input('Pick a letter or a word')
+    if float('')
+    if len(get_user_input) >= 2:
+        user_word = get_user_input
