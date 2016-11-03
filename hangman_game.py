@@ -35,9 +35,9 @@ def user_input():
     global user_letter
     global user_word
     get_user_input = input('Pick a letter or a word ')
-    #if get_user_input.isdigit:
-        #user_input()
-    if len(get_user_input) >= 2:
+    if get_user_input.isdigit():
+        user_input()
+    elif len(get_user_input) >= 2:
         user_word = get_user_input
         user_word = user_word.upper()
         return user_word
@@ -49,6 +49,7 @@ def user_input():
 
 def main():
     create_dashes_capitol()
+    user_input()
     chech_user_input('A')
     print(random_capitol_dashes)
 if __name__ == '__main__':
