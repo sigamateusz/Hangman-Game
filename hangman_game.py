@@ -1,3 +1,4 @@
+import sys
 import random
 import os
 os.system('clear') # clear screen
@@ -5,19 +6,26 @@ os.system('clear') # clear screen
 capitols = ["Berlin","Bratislava","Budapest","Dublin","London","Paris",
 "Amsterdam","Oslo","Warsaw","Cracow"]
 n = 0
-life = 5
+health = 0
 
 def create_dashes_capitol():
+    """
+    1. Picks a random capitol from list
+    2. Converts random capitol to uppercase
+    3. Saves string to list
+    4. Copy to new id
+    5. Converts to dash list
+    """
     global CAPITOL_SAVE
     global random_capitol
     global random_capitol_dashes
-    random_capitol = capitols[random.randrange(0, len(capitols))]
-    random_capitol = random_capitol.upper() # random capitol with uppercase
-    random_capitol = list(random_capitol)
-    CAPITOL_SAVE = random_capitol[:]
-    random_capitol_dashes = random_capitol[:]# copy to new id
+    random_capitol = capitols[random.randrange(0, len(capitols))] #1
+    random_capitol = random_capitol.upper() #2
+    random_capitol = list(random_capitol) #3
+    CAPITOL_SAVE = random_capitol[:] #4
+    random_capitol_dashes = random_capitol[:]
     print(random_capitol)
-    for i in range(len(random_capitol_dashes)):
+    for i in range(len(random_capitol_dashes)): #5
         random_capitol_dashes[i] = "_"
     print(random_capitol_dashes)
 
@@ -27,28 +35,34 @@ def check_user_input(n):
     if len(n) == 1:
         count = random_capitol.count(n)
         if count == 0:
-            print("You looseee..")
+            life()
+            os.system('clear')
+            print(random_capitol_dashes)
         else:
             for i in range(1,count+1):
                 # looking for index of n in random_capitol
                 random_capitol_dashes[random_capitol.index(n)] = n
                 # set n in random_capitol to 0
                 random_capitol[random_capitol.index(n)] = 0
+            os.system('clear')
             print(random_capitol_dashes)
     else:
         n = list(n)
-        if n == random_capitol:
+        if n == CAPITOL_SAVE:
             print(CAPITOL_SAVE)# random_capitol_dashes = CAPITOL_SAVE[:]
             print("You win!!")
+            play_again()
         else:
             print("Sorry, you wrong.")
 
 
 def user_input():
     '''get user input and convert to upper'''
+    global health
     global n
     global user_letter
     global user_word
+    print("Your life : {}".format(health))
     get_user_input = input('Pick a letter or a word ')
     if get_user_input.isdigit():
         user_input()
@@ -65,16 +79,36 @@ def user_input():
         user_letter = user_letter.upper()
         n = user_letter
 
-def life(arg):
-    arg -= 1
-    life = arg
+
+def life():
+    global health
+    health -= 1
+
+
+def play_again():
+    """Asks if user want to play again"""
+    os.system('clear')
+    if health == 0:
+        print("You looosee...")
+    x = input("Do you want to play again? (y/n)")
+    if x == 'y':
+        os.system('clear')
+        main()
+    else:
+        os.system('clear')
+        sys.exit()
 
 def main():
+    global health
+    health = 5
     create_dashes_capitol()
-    user_input()
-    print(CAPITOL_SAVE)
-    check_user_input(n)
-
+    while health > 0:
+        user_input()
+        check_user_input(n)
+        if CAPITOL_SAVE == random_capitol_dashes:
+            print(CAPITOL_SAVE)
+            break
+    play_again()
 
 if __name__ == '__main__':
     main()
