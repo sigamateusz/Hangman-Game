@@ -13,6 +13,11 @@ def print_cap_da():
     + "{}\n".format(" ".join(random_capital_dashes))+ '\x1b[0m')
 
 
+def print_full():
+    print("\n     "+'\x1b[3;37;41m' + "{}\n".format(" ".join(CAPITOL_SAVE))
+    + '\x1b[0m')
+
+
 def load_list():
     """loads capitals and graphics from files"""
     global capitals
@@ -70,8 +75,7 @@ def check_user_input(n):
         if n == CAPITOL_SAVE:
             clear()
             hangman_graphic()
-            print("\n     "+'\x1b[3;37;41m' + "{}\n".format(" ".join(CAPITOL_SAVE))
-            + '\x1b[0m')# random_capital_dashes = CAPITOL_SAVE[:]
+            print_full()
             print("You win!!")
             play_again()
         else:
@@ -147,8 +151,7 @@ def play_again():
     """asks if user want to play again"""
     if health == 0:
         clear()
-        print("\n     "+'\x1b[3;37;41m' + "{}\n".format(" ".join(CAPITOL_SAVE))
-        + '\x1b[0m')
+        print_full()
         print("\tYou looosee...")
     x = input("Do you want to play again? (y/n):\t")
     if x == 'y':
