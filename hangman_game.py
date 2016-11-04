@@ -3,19 +3,6 @@ import random
 import os
 import time
 
-def print_format_table():
-    """
-    prints table of formatted text format options
-    """
-    for style in range(8):
-        for fg in range(30,38):
-            s1 = ''
-            for bg in range(40,48):
-                format = ';'.join([str(style), str(fg), str(bg)])
-                s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
-            print(s1)
-        print('\n')
-
 
 def clear():
     """clear screen"""
@@ -24,7 +11,6 @@ def clear():
 def print_cap_da():
     print("\n     "+'\x1b[1;30;43m'
     + "{}\n".format(" ".join(random_capital_dashes))+ '\x1b[0m')
-
 
 
 def load_list():
@@ -61,7 +47,6 @@ def create_dashes_capital():
         else:
             random_capital_dashes[i] = "_"
     hangman_graphic()
-    #print_cap_da()
 
 
 def check_user_input(n):
@@ -72,7 +57,6 @@ def check_user_input(n):
             life()
             clear()
             hangman_graphic()
-#            print_cap_da()
         else:
             for i in range(1,count+1):
                 # looking for index of n in random_capital
@@ -81,7 +65,6 @@ def check_user_input(n):
                 random_capital[random_capital.index(n)] = 0
             clear()
             hangman_graphic()
-#            print_cap_da()
     else:
         n = list(n)
         if n == CAPITOL_SAVE:
@@ -142,7 +125,6 @@ def life():
     time.sleep(1)
     clear() # clear screen
     hangman_graphic()
-    #print_cap_da()
 
 
 def play_again():
@@ -151,7 +133,6 @@ def play_again():
         clear()
         print("\n     "+'\x1b[3;37;41m' + "{}\n".format(" ".join(CAPITOL_SAVE))
         + '\x1b[0m')
-        #print("\n     {}\n".format(" ".join(CAPITOL_SAVE)))
         print("\tYou looosee...")
     x = input("Do you want to play again? (y/n):\t")
     if x == 'y':
@@ -179,7 +160,6 @@ def hangman_graphic():
 def main():
     load_list()
     clear()
-    #print_format_table()
     global health
     health = 5
     create_dashes_capital()
