@@ -68,8 +68,10 @@ def check_user_input(n):
     else:
         n = list(n)
         if n == CAPITOL_SAVE:
+            clear()
             hangman_graphic()
-            print("\n     {}\n".format(" ".join(CAPITOL_SAVE)))# random_capital_dashes = CAPITOL_SAVE[:]
+            print("\n     "+'\x1b[3;37;41m' + "{}\n".format(" ".join(CAPITOL_SAVE))
+            + '\x1b[0m')# random_capital_dashes = CAPITOL_SAVE[:]
             print("You win!!")
             play_again()
         else:
