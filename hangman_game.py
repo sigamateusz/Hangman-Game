@@ -3,10 +3,32 @@ import random
 import os
 import time
 
-os.system('clear') # clear screen
+def print_format_table():
+    """
+    prints table of formatted text format options
+    """
+    for style in range(8):
+        for fg in range(30,38):
+            s1 = ''
+            for bg in range(40,48):
+                format = ';'.join([str(style), str(fg), str(bg)])
+                s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
+            print(s1)
+        print('\n')
+
+
+def clear():
+    """clear screen"""
+    os.system('clear')
+
+def print_cap_da():
+    print("\n     "+'\x1b[1;30;43m'
+    + "{}\n".format(" ".join(random_capital_dashes))+ '\x1b[0m')
+
 
 
 def load_list():
+    """loads capitals and graphics from files"""
     global capitals
     global graphics
     f = open('capitals.txt', 'r')
@@ -33,14 +55,13 @@ def create_dashes_capital():
     random_capital = list(random_capital) #3
     CAPITOL_SAVE = random_capital[:] #4
     random_capital_dashes = random_capital[:]
-    #print(random_capital)
     for i in range(len(random_capital_dashes)): #5
         if random_capital_dashes[i] == " ":
             continue
         else:
             random_capital_dashes[i] = "_"
     hangman_graphic()
-    print("\n     {}\n".format(" ".join(random_capital_dashes)))
+    #print_cap_da()
 
 
 def check_user_input(n):
@@ -49,18 +70,18 @@ def check_user_input(n):
         count = random_capital.count(n)
         if count == 0:
             life()
-            os.system('clear')
+            clear()
             hangman_graphic()
-            print("\n     {}\n".format(" ".join(random_capital_dashes)))
+#            print_cap_da()
         else:
             for i in range(1,count+1):
                 # looking for index of n in random_capital
                 random_capital_dashes[random_capital.index(n)] = n
                 # set n in random_capital to 0
                 random_capital[random_capital.index(n)] = 0
-            os.system('clear')
+            clear()
             hangman_graphic()
-            print("\n     {}\n".format(" ".join(random_capital_dashes)))
+#            print_cap_da()
     else:
         n = list(n)
         if n == CAPITOL_SAVE:
@@ -74,6 +95,7 @@ def check_user_input(n):
 
 def user_input():
     '''get user input and convert to upper'''
+    print_cap_da()
     global health
     global n
     global user_letter
@@ -93,6 +115,8 @@ def user_input():
     if get_user_input.isdigit():
         user_input()
     elif get_user_input.isalnum() == False:
+        clear()
+        hangman_graphic()
         user_input()
     elif len(get_user_input) < 1:
         user_input()
@@ -116,42 +140,46 @@ def life():
     health -= 1
     print("Sorry, you wrong.")
     time.sleep(1)
-    os.system('clear') # clear screen
+    clear() # clear screen
     hangman_graphic()
-    print("\n     {}\n".format(" ".join(random_capital_dashes)))
+    #print_cap_da()
 
 
 def play_again():
     """Asks if user want to play again"""
     if health == 0:
-        os.system('clear')
-        print("\n     {}\n".format(" ".join(CAPITOL_SAVE)))
+        clear()
+        print("\n     "+'\x1b[3;37;41m' + "{}\n".format(" ".join(CAPITOL_SAVE))
+        + '\x1b[0m')
+        #print("\n     {}\n".format(" ".join(CAPITOL_SAVE)))
         print("\tYou looosee...")
     x = input("Do you want to play again? (y/n):\t")
     if x == 'y':
-        os.system('clear')
+        clear()
         main()
     else:
-        os.system('clear')
+        clear()
         sys.exit()
 
 
 def hangman_graphic():
     global health
     if   health == 5:
-        print(graphics[0:99])
+        print('\x1b[6;30;42m' + graphics[0:167] + '\x1b[0m')
     elif health == 4:
-        print(graphics[100:199])
+        print('\x1b[6;30;42m' + graphics[168:335] + '\x1b[0m')
     elif health == 3:
-        print(graphics[200:299])
+        print('\x1b[6;30;42m' + graphics[336:503] + '\x1b[0m')
     elif health == 2:
-        print(graphics[300:399])
+        print('\x1b[6;30;42m' + graphics[504:671] + '\x1b[0m')
     elif health == 1:
-        print(graphics[400:499])
+        print('\x1b[6;30;42m' + graphics[672:839] + '\x1b[0m')
 
 
 def main():
     load_list()
+    clear()
+    #print_format_table()
     global health
     health = 5
     create_dashes_capital()
